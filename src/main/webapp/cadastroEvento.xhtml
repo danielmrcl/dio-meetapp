@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro Evento | MeetApp</title>
+        <h:outputStylesheet library="css" name="styles.css" />
+    </h:head>
+    <h:body>
+        <div id="header" class="center">
+            <p:graphicImage id="logo" library="images" name="logo.png"/>
+        </div>
+
+        <div>
+            <h:form id="form" class="center">
+                <h:panelGrid>
+                    <p:outputLabel value="Nome do Evento:"/>
+                    <p:inputText value="#{eventoBean.evento.nome}" placeholder="Digite o nome!" required="true" styleClass="entrada" autocomplete="off"/>
+
+                    <p:outputLabel value="Nome da Organização:" />
+                    <p:inputText value="#{eventoBean.evento.organizacao}" placeholder="Digite o nome da organização!" required="true"  styleClass="entrada" autocomplete="off"/>
+
+                    <p:outputLabel value="Local" />
+                    <p:inputText value="#{eventoBean.evento.local}" placeholder="Digite o nome do local!" required="true"  styleClass="entrada"  autocomplete="off"/>
+
+                    <p:outputLabel value="Data" />
+                    <p:inputText value="#{eventoBean.evento.data}" type="date" required="true"  styleClass="entrada"/>
+
+                    <p:outputLabel value="Hora" />
+                    <p:inputText value="#{eventoBean.evento.hora}" type="time" placeholder="hh:mm" required="true"  styleClass="entrada"/>
+
+                    <p:commandButton id="btn-enviar" value="Cadastrar" action="#{eventoBean.cadastrarEvento}" update="form table"/>
+                </h:panelGrid>
+            </h:form>
+        </div>
+
+        <div class="center">
+            <p:dataTable id="table" value="#{eventoBean.eventos}" var="e">
+                <p:column headerText="Nome">#{e.nome}</p:column>
+                <p:column headerText="Organização">#{e.organizacao}</p:column>
+                <p:column headerText="Local">#{e.local}</p:column>
+                <p:column headerText="Data">#{e.data}</p:column>
+                <p:column headerText="Hora">#{e.hora}</p:column>
+            </p:dataTable>
+        </div>
+    </h:body>
+</html>
+
